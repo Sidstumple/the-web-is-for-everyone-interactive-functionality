@@ -1,0 +1,19 @@
+<li class="member-card">
+  <div class="member-card__image">
+    <img src="<%= member.avatar != '' && member.avatar != 'test' ? member.avatar :'/placeholder.jpg' %>" alt="De avatar van <%= member.name %>" />
+  </div>
+  <div class="member-card__info">
+    <% if (member.role && member.role.length) { %>
+      <p class="label small-body">
+        <%= member.role == 'co_teacher' ? 'teacher' : 'student'  %>
+      </p>
+    <% } %>
+    <h2 class="member-card__name medium-body"><%= member.name %> <%= member.prefix %> <%= member.surname %></h2>
+    <% if (member.gitHubHandle) { %>
+      <a class="member-card__github-link small-body" href="https://github.com/<%= member.gitHubHandle %>" target="_blank">@<%= member.gitHubHandle %></a>
+    <% } %>
+    <a class="member-card__link" href="<%= member.url %>">
+      <span class="sr-only"><%=member.linkText%></span>
+    </a>
+  </div>
+</li>

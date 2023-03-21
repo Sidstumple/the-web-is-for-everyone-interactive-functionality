@@ -1,22 +1,12 @@
 <%- include('./partials/head.ejs') %>
 
-<h1><%= squad.name %></h1>
-
-<% squad.members.forEach(member => { %>
-
-  <article>
-    <h2><%= member.name %> <%= member.prefix %> <%= member.surname %></h2>
-    <img src="<%= member.avatar != '' ? member.avatar :'/placeholder.jpg' %>" alt="De avatar van <%= member.name %>" />
-    <a href="/member/?id=<%= member.id %>"></a>
-  </article>
-
-<% }) %>
-
-
-  <article>
-    <h2>Jouw kaartje hier?</h2>
-    <img src="/placeholder.jpg" alt="Jouw avatar hier?" />
-    <a href="/member/new?squad=<%= squad.id %>&"></a>
-  </article>
-
+<div class="page-header">
+  <h1 class="large-heading"><%= squad.name %></h1>
+</div>
+<ul class="member-cards">
+  <%- include('./partials/member-card.ejs', {member: { avatar: './placeholder.jpg', name: 'Jouw kaartje hier?', url: `/member/new?squad=${squad.id}&`, linkText: 'Voeg een nieuw kaartje toe'}}) %>
+  <% squad.members.forEach(member => { %>
+    <%- include('./partials/member-card.ejs', { member: {...member, url: `/member/?id=${member.id}&`, linkText: `Bekijk ${member.name} in detail`} }) %>
+  <% }) %>
+</ul>
 <%- include('./partials/foot.ejs') %>

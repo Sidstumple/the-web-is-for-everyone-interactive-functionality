@@ -14,6 +14,7 @@ index.get('/', (request, response) => {
 
   fetchJson(url).then((data) => {
     response.render('index', data)
+    console.log(data.squad.members);
   })
 })
 
